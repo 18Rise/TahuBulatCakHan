@@ -61,7 +61,7 @@ body{
 }
 
 .navbar .navbar-logo .awal{
-    height: 50px; /* Adjust this value as needed */
+    height: 50px;
     width: auto;
     object-fit: contain;
     transition: transform 0.3s ease;
@@ -180,7 +180,7 @@ body{
 }
 
 .hero .hero-bg .akhir{
-    width: 800px; /* Base size for desktop */
+    width: 800px;
     height: auto;
     max-width: none;
     filter: contrast(150%);
@@ -192,10 +192,10 @@ body{
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%; /* Perluas untuk membuat efek looping */
+    width: 100%;
     height: 100%;
-    object-fit: cover; /* Pastikan gambar terlihat utuh */
-    z-index: -1; /* Pastikan berada di belakang konten */
+    object-fit: cover;
+    z-index: -1;
     filter: opacity(100%);
 }
 
@@ -281,7 +281,7 @@ body{
     color: var(--text-dark);
 }
 
-/* testimoni */
+/* review */
 #review {
     padding: 4rem 7% 1.4rem;
     background-color: var(--bg);
@@ -306,7 +306,7 @@ body{
     padding: 20px 0;
     min-height: 400px;
     transition: transform 0.5s ease-in-out;
-    width: max-content; /* Allow container to be as wide as needed */
+    width: max-content;
 }
 
 .review-card {
@@ -723,6 +723,8 @@ footer .credit p{
     }
 }
 
+/* animation */
+
 @keyframes floatBackground {
     0%, 100% {
         transform: translateY(0) rotate(0deg);
@@ -748,7 +750,7 @@ footer .credit p{
         transform: translateX(0);
     }
     100% {
-        transform: translateX(calc(-300px * 5)); /* Slide by 5 cards width */
+        transform: translateX(calc(-300px * 5));
     }
 }
 

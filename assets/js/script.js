@@ -1,4 +1,4 @@
-// Toggle for hamburger menu
+// hamburger menu
 const hamburgerMenu = document.querySelector('#hamburger-menu');
 const navbarNav = document.querySelector('.navbar-nav');
 
@@ -7,26 +7,23 @@ hamburgerMenu.addEventListener('click', (e) => {
     navbarNav.classList.toggle('active');
 });
 
-// Close navbar when clicking outside
 document.addEventListener('click', (e) => {
     if (!e.target.closest('.navbar') && navbarNav.classList.contains('active')) {
         navbarNav.classList.remove('active');
     }
 });
 
-// Prevent event bubbling on navbar
 navbarNav.addEventListener('click', (e) => {
     e.stopPropagation();
 });
 
-// Close navbar when links are clicked
 navbarNav.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
         navbarNav.classList.remove('active');
     });
 });
 
-// Navbar hide/show on scroll
+// navbar hide/show on scroll
 let lastScrollY = window.scrollY;
 let lastScrollPosition = 0;
 const navbar = document.querySelector('.navbar');
@@ -51,7 +48,7 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Hero background parallax effect
+// hero bg parralax effect
 function throttle(func, limit) {
     let inThrottle;
     return function() {
@@ -82,10 +79,9 @@ window.addEventListener('scroll', throttle(() => {
     requestAnimationFrame(updateHeroBackground);
 }, 16));
 
-// Initialize hero background
 updateHeroBackground();
 
-// Review Cards with API Integration
+// review card with fetch API
 async function fetchReviews() {
     const reviewsContainer = document.getElementById('reviews');
     
@@ -94,7 +90,6 @@ async function fetchReviews() {
         return;
     }
 
-    // Show loading state
     reviewsContainer.innerHTML = `
         <div class="loading-spinner">
             <p>Loading reviews...</p>
@@ -110,7 +105,6 @@ async function fetchReviews() {
 
         const data = await response.json();
 
-        // Custom review messages
         const reviewMessages = [
             "Tahu bulatnya enak banget! Gurih dan murah. Bumbunya pas di lidah. Recommended!",
             "Pelayanannya ramah, tempatnya bersih. Tahu bulatnya jadi cemilan favorit keluarga.",
@@ -124,11 +118,9 @@ async function fetchReviews() {
             "Best tahu bulat in town! Ga pernah mengecewakan."
         ];
 
-        // Clear loading message and wrap container
         reviewsContainer.innerHTML = '';
         reviewsContainer.className = 'reviews-container';
 
-        // Create and append review cards
         data.results.forEach((user, index) => {
             const reviewCard = document.createElement('div');
             reviewCard.className = 'review-card';
@@ -142,14 +134,12 @@ async function fetchReviews() {
             `;
             reviewsContainer.appendChild(reviewCard);
 
-            // Add animation with delay
             setTimeout(() => {
                 reviewCard.style.opacity = '1';
                 reviewCard.style.transform = 'translateY(0)';
             }, index * 200);
         });
 
-        // Start sliding animation after all cards are loaded
         setTimeout(() => {
             reviewsContainer.classList.add('animate');
         }, 2000);
@@ -164,51 +154,4 @@ async function fetchReviews() {
     }
 }
 
-// Initialize review cards when DOM is loaded
 document.addEventListener('DOMContentLoaded', fetchReviews);
-
-// About Modal functionality
-const aboutBtn = document.getElementById('aboutBtn');
-const modal = document.getElementById('aboutModal');
-const closeBtn = document.querySelector('.close-modal');
-
-if (aboutBtn && modal && closeBtn) {
-    aboutBtn.onclick = function() {
-        modal.style.display = "block";
-        setTimeout(() => {
-            modal.classList.add('active');
-        }, 10);
-        document.body.style.overflow = "hidden";
-    };
-
-    closeBtn.onclick = function() {
-        modal.classList.remove('active');
-        setTimeout(() => {
-            modal.style.display = "none";
-        }, 300);
-        document.body.style.overflow = "auto";
-    };
-
-    // Close modal when clicking outside
-    window.onclick = function(event) {
-        if (event.target === modal) {
-            modal.classList.remove('active');
-            setTimeout(() => {
-                modal.style.display = "none";
-            }, 300);
-            document.body.style.overflow = "auto";
-        }
-    };
-}
-
-// Initialize review cards when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    fetchReviews();
-});
-
-// Add error handling for images
-document.addEventListener('error', function(e) {
-    if (e.target.tagName.toLowerCase() === 'img') {
-        e.target.src = 'assets/img/1.png'; // Replace with your default image path
-    }
-}, true);
